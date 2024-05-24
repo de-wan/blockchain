@@ -14,4 +14,5 @@ type Node struct {
 	BaseUrl       string
 	IsOnline      bool
 	LastHeartbeat sql.NullTime
+	CreatedAt     sql.NullTime
 }
