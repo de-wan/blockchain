@@ -7,7 +7,6 @@ package db_sqlc
 
 import (
 	"context"
-	"database/sql"
 )
 
 const addNode = `-- name: AddNode :exec
@@ -18,7 +17,7 @@ INSERT INTO node (label, base_url, is_online)
 type AddNodeParams struct {
 	Label    string
 	BaseUrl  string
-	IsOnline sql.NullBool
+	IsOnline bool
 }
 
 func (q *Queries) AddNode(ctx context.Context, arg AddNodeParams) error {

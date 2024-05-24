@@ -3,3 +3,4 @@ blockchain
 *.log
 node_registry
 !node_registry/
+.env

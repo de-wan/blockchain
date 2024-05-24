@@ -12,6 +12,6 @@ type Node struct {
 	ID            int64
 	Label         string
 	BaseUrl       string
-	IsOnline      sql.NullBool
-	LastHeartbeat interface{}
+	IsOnline      bool
+	LastHeartbeat sql.NullTime
 }
