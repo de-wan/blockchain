@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+
+	"github.com/de-wan/blockchain/common"
 )
 
 func HandlePing(w http.ResponseWriter, r *http.Request) {
@@ -19,7 +21,7 @@ func HandlePing(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/ping", HandlePing)
+	common.ConfigureLogging("registry")
 
 	log.Println("Starting node registry on port 8007...")
 	http.ListenAndServe(":8007", nil)
