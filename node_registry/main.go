@@ -22,6 +22,7 @@ func HandlePing(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	common.ConfigureLogging("registry")
+	http.HandleFunc("GET /ping", HandlePing)
 
 	log.Println("Starting node registry on port 8007...")
 	http.ListenAndServe(":8007", nil)
