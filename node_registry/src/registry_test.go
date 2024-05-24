@@ -2,6 +2,7 @@ package src
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -57,14 +58,34 @@ func TestAddNode(t *testing.T) {
 	}
 }
 
-func TestListNodes(t *testing.T) {
+func TestListOnlineNodes(t *testing.T) {
+	db_sqlc.InitTestDB()
+
+	// Create a new request
+	req, err := http.NewRequest("GET", "/test", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Create a ResponseRecorder to record the response
+	w := httptest.NewRecorder()
+	handler := http.HandlerFunc(HandleListOnlineNodes)
+	handler.ServeHTTP(w, req)
+
+	// Check the status code is what we expect
+	if status := w.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusOK)
+	}
+
+	received := strings.TrimSpace(w.Body.String())
+	fmt.Println(received)
+}
+
+func TestNodeConnectionHeartbeat(t *testing.T) {
 
 }
 
 func TestGetSyncNode(t *testing.T) {
-
-}
-
-func TestNodeConnectionHeartbeat(t *testing.T) {
 
 }

@@ -42,3 +42,23 @@ func HandleAddNode(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
 }
+
+func HandleListOnlineNodes(w http.ResponseWriter, r *http.Request) {
+	c := context.Background()
+	queries := db_sqlc.New(db_sqlc.DB)
+
+	onlineNodes, err := queries.ListOnlineNodes(c)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	response := map[string]interface{}{
+		"code": 0,
+		"msg":  "success",
+		"data": onlineNodes,
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
+}
