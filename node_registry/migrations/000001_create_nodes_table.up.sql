@@ -1,7 +1,7 @@
 CREATE TABLE node (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    identity VARCHAR(20) UNIQUE NOT NULL,
-    base_url VARCHAR(50) NULL,
+    label VARCHAR(20) UNIQUE NOT NULL,
+    base_url VARCHAR(50) NOT NULL,
     is_online BOOLEAN DEFAULT 0,
     last_heartbeat DATETIME NULL
 )

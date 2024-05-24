@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/de-wan/blockchain/common"
+	"github.com/de-wan/blockchain/node_registry/db_sqlc"
 )
 
 func HandlePing(w http.ResponseWriter, r *http.Request) {
@@ -22,6 +23,8 @@ func HandlePing(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	common.ConfigureLogging("registry")
+	db_sqlc.Init()
+
 	http.HandleFunc("GET /ping", HandlePing)
 
 	log.Println("Starting node registry on port 8007...")

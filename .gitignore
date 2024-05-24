@@ -1,3 +1,5 @@
 blockchain
 *.db
+*.log
 node_registry
+!node_registry/
